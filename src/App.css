@@ -6,11 +6,17 @@ html, body {
   padding-top: 10px;
   font-family: 'Press Start 2P', cursive;
   text-align: center;
+  height: 100%;
 }
 
 body {
   font-weight: 400;
-}
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} 
+
 
 button {
   font-family: 'Press Start 2P', cursive;
