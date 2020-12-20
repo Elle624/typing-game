@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const [text, getText] = useState('');
+  const [isTimeRunning, setTimeRunning] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(5);
 
   const handleChange = (event) => {
@@ -17,18 +18,20 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      if (timeRemaining > 0) {
+      if (isTimeRunning && timeRemaining > 0) {
         setTimeRemaining(prevTime => prevTime - 1)
+      } else if (timeRemaining === 0) {
+        setTimeRunning(false)
       }
     }, 1000)
-  }, [timeRemaining])
+  }, [timeRemaining, isTimeRunning])
 
   return (
     <section>
       <h1> How fast do you type?</h1>
       <textarea value={text} onChange={handleChange} />
       <h4>Time remaining: {timeRemaining}</h4>
-      <button onClick={() => calculateWordsCount(text)}>START</button>
+      <button onClick={() => setTimeRunning(true)}>START</button>
       <h1>Word Count:</h1>
     </section>
   );
